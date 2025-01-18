@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANTISSA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav style="background-color: #e50914; padding: 10px;">
+        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
+        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
+        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
+        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
+        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    </nav>
+    <h1>BINARY TO MANTISSA</h1>
+    <input type="text" id="binaryInput" placeholder="Enter binary number" />
+    <button onclick="convertToMantissa()">Convert</button>
+    <h2 id="mantissaOutput"></h2>
+
+    <script>
+        function convertToMantissa() {
+            const binary = document.getElementById('binaryInput').value;
+            const parts = binary.split('.');
+            let mantissa = '';
+
+            if (parts.length > 1) {
+                mantissa = parts[1]; // Take the fractional part as mantissa
+            } else {
+                mantissa = '0'; // If no fractional part, set mantissa to 0
+            }
+
+            document.getElementById('mantissaOutput').innerText = `Mantissa: ${mantissa}`;
+            document.getElementById('binaryInput').value = ''; // Clear input after conversion
+        }
+    </script>
+</body>
+</html>

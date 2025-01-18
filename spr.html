@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav style="background-color: #e50914; padding: 10px;">
+        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
+        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
+        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
+        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
+        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    </nav>
+    <h1>SPR CONVERTER</h1>
+    <input type="number" id="signInput" placeholder="Enter sign (0 or 1)" />
+    <input type="text" id="exponentInput" placeholder="Enter exponent (8 bits in binary)" />
+    <input type="text" id="mantissaInput" placeholder="Enter mantissa (23 bits)" />
+    <button onclick="convertToSPR()">CONVERT</button>
+    <h2 id="sprOutput"></h2>
+
+    <script>
+        function singlePrecisionRepresentation(sign, exponentBinary, mantissa) {
+            // Step 1: Validate inputs
+            if (sign !== 0 && sign !== 1) {
+                return "Invalid sign bit. Must be 0 or 1.";
+            }
+            if (!/^[01]{8}$/.test(exponentBinary)) {
+                return "Invalid exponent binary. Must be an 8-bit binary number.";
+            }
+            if (mantissa.length > 23) {
+                return "Mantissa exceeds 23 bits.";
+            }
+
+            // Step 2: Convert exponent binary to decimal
+            let exponent = parseInt(exponentBinary, 2);
+
+            // Step 3: Pad mantissa to 23 bits if needed
+            mantissa = mantissa.padEnd(23, "0");
+
+            // Step 4: Convert inputs to binary representation
+            let signBit = sign.toString(2); // Convert sign to binary (just 0 or 1)
+            let exponentBits = exponent.toString(2).padStart(8, "0"); // 8-bit exponent
+            let mantissaBits = mantissa; // Already in binary form
+
+            // Step 5: Combine to create the 32-bit single-precision representation
+            let singlePrecisionBinary = signBit + exponentBits + mantissaBits;
+
+            // Step 6: Convert binary to hexadecimal
+            let singlePrecisionHex = parseInt(singlePrecisionBinary, 2).toString(16).toUpperCase().padStart(8, "0");
+
+            // Step 7: Return the results
+            return {
+                binary: singlePrecisionBinary,
+                hexadecimal: singlePrecisionHex,
+                explanation: `Exponent (binary): ${exponentBinary}, Exponent (decimal): ${exponent}`
+            };
+        }
+
+        function convertToSPR() {
+            const sign = parseInt(document.getElementById('signInput').value);
+            const exponentBinary = document.getElementById('exponentInput').value;
+            const mantissa = document.getElementById('mantissaInput').value;
+
+            const result = singlePrecisionRepresentation(sign, exponentBinary, mantissa);
+            document.getElementById('sprOutput').innerText = `Single Precision Representation (Binary): ${result.binary}, Hexadecimal: ${result.hexadecimal}. ${result.explanation}`;
+            document.getElementById('signInput').value = ''; // Clear input after conversion
+            document.getElementById('exponentInput').value = ''; // Clear input after conversion
+            document.getElementById('mantissaInput').value = ''; // Clear input after conversion
+        }
+    </script>
+</body>
+</html>

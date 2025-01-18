@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXCESS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav style="background-color: #e50914; padding: 10px;">
+        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
+        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
+        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
+        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
+        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    </nav>
+    <h1>EXCESS NOTATION CONVERTER</h1>
+    <input type="number" id="exponentInput" placeholder="Enter exponent" />
+    <button onclick="convertToExcess()">Convert</button>
+    <h2 id="excessOutput"></h2>
+
+    <script>
+        function addBiasToExponent(exponent) {
+            const bias = 127; // Bias for single-precision floating-point
+            const biasedExponent = exponent + bias; // Add the bias
+            return biasedExponent; // Return the result
+        }
+
+        function convertToExcess() {
+            const exponent = parseInt(document.getElementById('exponentInput').value);
+            const newExponent = addBiasToExponent(exponent);
+            document.getElementById('excessOutput').innerText = `New Exponent: ${newExponent}`;
+            document.getElementById('exponentInput').value = ''; // Clear input after conversion
+        }
+    </script>
+</body>
+</html>

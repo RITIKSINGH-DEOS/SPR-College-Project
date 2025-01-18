@@ -1,0 +1,73 @@
+body {
+    background-color: #141414; /* Dark background */
+    color: #e5e5e5; /* Light text color */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+nav {
+    background-color: #e50914; /* Netflix red */
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: space-between; /* Space between items */
+}
+
+nav a {
+    color: white; /* White text for links */
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    width: 200px;
+}
+
+button {
+    background-color: #e50914; /* Button color matching Netflix theme */
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f40612; /* Darker red on hover */
+}
+
+/* New styles for SPR page */
+#sprOutput {
+    display: block; /* Ensure output is displayed in block form */
+    margin-top: 10px; /* Add some space above the output */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column; /* Stack navbar items on small screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    nav a {
+        margin-bottom: 10px; /* Add space between links */
+    }
+
+    input {
+        width: 100%; /* Full width input on small screens */
+    }
+}

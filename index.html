@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav style="background-color: #e50914; padding: 10px;">
+        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
+        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
+        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
+        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
+        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    </nav>
+    <h1>DECIMAL TO BINARY</h1>
+    <input type="text" id="decimalInput" placeholder="Enter decimal number" />
+    <button onclick="convertToBinary()">Convert</button>
+    <h2 id="binaryOutput"></h2>
+
+    <script>
+        function decimalToBinary(decimal) {
+            // Separate integer and fractional parts
+            let integerPart = Math.floor(decimal);
+            let fractionalPart = decimal - integerPart;
+
+            // Convert integer part to binary
+            let integerBinary = "";
+            while (integerPart > 0) {
+                integerBinary = (integerPart % 2) + integerBinary;
+                integerPart = Math.floor(integerPart / 2);
+            }
+            if (integerBinary === "") integerBinary = "0"; // Handle case for 0
+
+            // Convert fractional part to binary
+            let fractionalBinary = "";
+            let precision = 10; // Limit to 10 binary places
+            while (fractionalPart > 0 && fractionalBinary.length < precision) {
+                fractionalPart *= 2;
+                let bit = Math.floor(fractionalPart);
+                fractionalBinary += bit;
+                fractionalPart -= bit;
+            }
+
+            // Combine both parts
+            return fractionalBinary.length > 0
+                ? integerBinary + "." + fractionalBinary
+                : integerBinary;
+        }
+
+        function convertToBinary() {
+            const input = document.getElementById('decimalInput').value;
+            const decimalNumber = parseFloat(input);
+            const binaryResult = decimalToBinary(decimalNumber);
+            document.getElementById('binaryOutput').innerText += `Binary: ${binaryResult} `;
+            document.getElementById('decimalInput').value = ''; // Clear input after conversion
+        }
+    </script>
+</body>
+</html>
