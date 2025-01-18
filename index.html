@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTB</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <nav style="background-color: #e50914; padding: 10px;">
-        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
-        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
-        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
-        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
-        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    <nav>
+        <a href="index.html">DCB</a>
+        <a href="mantissa.html">MANTISSA</a>
+        <a href="excess.html">EXCESS</a>
+        <a href="spr.html">SPR</a>
+        <a class="name" href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in">RITIK SINGH</a>
     </nav>
-    <h1>DECIMAL TO BINARY</h1>
-    <input type="text" id="decimalInput" placeholder="Enter decimal number" />
-    <button onclick="convertToBinary()">Convert</button>
-    <h2 id="binaryOutput"></h2>
+
+    <div class="dcb box-dgn">
+        <h1>DECIMAL TO BINARY</h1>
+        <input type="text" id="decimalInput" class="inpt" placeholder="Enter decimal number" />
+        <button onclick="convertToBinary()">CONVERT</button>
+        <h3 id="binaryOutput"></h3>
+    </div>
+
 
     <script>
         function decimalToBinary(decimal) {
@@ -58,4 +67,5 @@
         }
     </script>
 </body>
+
 </html>

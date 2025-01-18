@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        </style>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <nav style="background-color: #e50914; padding: 10px;">
-        <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">DCB</a>
-        <a href="mantissa.html" style="color: white; text-decoration: none; margin-right: 15px;">MANTISSA</a>
-        <a href="excess.html" style="color: white; text-decoration: none; margin-right: 15px;">EXCESS</a>
-        <a href="spr.html" style="color: white; text-decoration: none; margin-right: 15px;">SPR</a>
-        <a href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" style="color: white; text-decoration: none; margin-left: auto;">RITIK SINGH</a>
+    <nav  >
+        <a href="index.html" >DCB</a>
+        <a href="mantissa.html" >MANTISSA</a>
+        <a href="excess.html" >EXCESS</a>
+        <a href="spr.html" >SPR</a>
+        <a class="name" href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in" >RITIK SINGH</a>
     </nav>
-    <h1>SPR CONVERTER</h1>
-    <input type="number" id="signInput" placeholder="Enter sign (0 or 1)" />
-    <input type="text" id="exponentInput" placeholder="Enter exponent (8 bits in binary)" />
-    <input type="text" id="mantissaInput" placeholder="Enter mantissa (23 bits)" />
-    <button onclick="convertToSPR()">CONVERT</button>
-    <h2 id="sprOutput"></h2>
+
+    <div class="spr box-dgn">
+
+        <h1 >SINGLE PRECISION</h1>
+        <input type="number" class="inpt" id="signInput" placeholder="Enter sign (0 or 1)" />
+        <input type="text"  class="inpt" id="exponentInput" placeholder="Enter exponent " />
+        <input type="text"  class="inpt" id="mantissaInput" placeholder="Enter mantissa" />
+        <button class="sprbtn" onclick="convertToSPR()">CONVERT</button>
+        <h3 class="spr-op" id="sprOutput"></h3>
+    </div>
+
+
+
 
     <script>
         function singlePrecisionRepresentation(sign, exponentBinary, mantissa) {
@@ -55,7 +67,8 @@
             return {
                 binary: singlePrecisionBinary,
                 hexadecimal: singlePrecisionHex,
-                explanation: `Exponent (binary): ${exponentBinary}, Exponent (decimal): ${exponent}`
+                explanation: `
+                Exponent (binary): ${exponentBinary}`
             };
         }
 
@@ -65,11 +78,12 @@
             const mantissa = document.getElementById('mantissaInput').value;
 
             const result = singlePrecisionRepresentation(sign, exponentBinary, mantissa);
-            document.getElementById('sprOutput').innerText = `Single Precision Representation (Binary): ${result.binary}, Hexadecimal: ${result.hexadecimal}. ${result.explanation}`;
+            document.getElementById('sprOutput').innerText = `SPR (Binary): ${result.binary} Hexadecimal: ${result.hexadecimal} ${result.explanation}`;
             document.getElementById('signInput').value = ''; // Clear input after conversion
             document.getElementById('exponentInput').value = ''; // Clear input after conversion
             document.getElementById('mantissaInput').value = ''; // Clear input after conversion
         }
     </script>
 </body>
+
 </html>
