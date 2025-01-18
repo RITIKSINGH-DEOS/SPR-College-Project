@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="red-circle"></div>
+    <div class="purple-circle"></div>
+    <div class="yellow-circle"></div>
+    <div class="sky-circle"></div>
     <nav  ">
-        <a href="index.html" >DCB</a>
+        <a href="index.html" >DTB</a>
         <a href="mantissa.html" >MANTISSA</a>
         <a href="excess.html" >EXCESS</a>
         <a href="spr.html" >SPR</a>
@@ -68,7 +72,8 @@
         function convertToMantissa() {
             const binary = document.getElementById('binaryInput').value;
             const result = binaryToMantissa(binary);
-            document.getElementById('mantissaOutput').innerText = `Mantissa: ${result.mantissa}, Exponent: ${result.exponent}`;
+            document.getElementById('mantissaOutput').innerText = `Mantissa: ${result.mantissa}
+             Exponent: ${result.exponent}`;
             document.getElementById('binaryInput').value = ''; // Clear input after conversion
         }
     </script>

@@ -7,13 +7,13 @@
            /* Dark background */
            color: #e5e5e5;
            /* Light text color */
-           font-family: Arial, sans-serif;
            display: flex;
            flex-direction: column;
            align-items: center;
            justify-content: center;
            height: 100vh;
            margin: 0;
+
        }
 
        :root {
@@ -21,6 +21,7 @@
        }
 
        nav {
+           /* border: 2px solid white; */
            background-color: #000000;
            padding: 15px;
            width: 100%;
@@ -130,9 +131,116 @@
            flex-direction: column;
        }
 
+ 
+
        #sprOutput {
            display: block;
            margin-top: 10px;
+       }
+
+       .red-circle {
+           background-color: rgba(204, 68, 68, 0.954);
+           width: 150px;
+           height: 150px;
+           border-radius: 50%;
+           position: absolute;
+           left: 300px;
+           top: 80px;
+           box-shadow: 0 0 15px 10px rgba(204, 68, 68, 0.954);
+           animation: redcircle 4s 1s infinite alternate;
+       }
+
+       @keyframes redcircle {
+           0% {
+               left: 300px;
+           }
+
+           100% {
+               left: 330px;
+               width: 160px;
+               height: 160px;
+
+           }
+       }
+
+       .purple-circle {
+           background-color: rgba(178, 78, 236, 0.954);
+           width: 200px;
+           height: 200px;
+           border: none;
+           border-radius: 50%;
+           position: absolute;
+           top: 450px;
+           left: 1000px;
+           box-shadow: 0 0 15px 10px rgba(178, 78, 236, 0.954);
+           animation: purplecircle 4s 1s infinite alternate;
+       }
+
+       @keyframes purplecircle {
+           0% {
+               left: 1030px;
+
+           }
+
+           100% {
+               left: 1030px;
+               width: 210px;
+               height: 210px;
+           }
+       }
+
+
+       .yellow-circle {
+           background-color: rgba(236, 199, 78, 0.954);
+           width: 100px;
+           height: 100px;
+           border: none;
+           border-radius: 50%;
+           position: absolute;
+           top: 90px;
+           left: 1280px;
+           box-shadow: 0 0 15px 10px rgba(235, 204, 101, 0.954);
+           animation: yellowcircle 4s 1s infinite alternate;
+       }
+
+       @keyframes yellowcircle {
+           0% {
+               left: 1280px;
+
+           }
+
+           100% {
+               left: 1300px;
+               width: 110px;
+               height: 110px;
+           }
+       }
+
+
+       .sky-circle {
+           background-color: rgba(78, 217, 236, 0.954);
+           width: 100px;
+           height: 100px;
+           border: none;
+           border-radius: 50%;
+           position: absolute;
+           top: 500px;
+           left: 180px;
+           box-shadow: 0 0 15px 10px rgba(99, 218, 234, 0.954);
+           animation: skycircle 4s 1s infinite alternate;
+       }
+
+       @keyframes skycircle {
+           0% {
+               left: 180px;
+
+           }
+
+           100% {
+               left: 200px;
+               width: 110px;
+               height: 110px;
+           }
        }
 
        @keyframes gradient {
@@ -149,4 +257,87 @@
            }
        }
 
-    
+       @media (max-width:475px) {
+
+           .name {
+               margin-left: 0;
+           }
+
+           nav {
+               flex-direction: column;
+               justify-content: center;
+           }
+
+           .yellow-circle {
+               display: none;
+           }
+
+           .purple-circle {
+               display: none;
+           }
+
+           .red-circle {
+
+               width: 70px;
+               height: 70px;
+               top: 180px;
+               left: 40px;
+           }
+
+           @keyframes redcircle {
+               0% {
+                   left: 40px;
+               }
+
+               100% {
+                   left: 60px;
+                   width: 80px;
+                   height: 80px;
+
+               }
+
+           }
+
+           .sky-circle {
+               top: 650px;
+               left: 250px;
+           }
+
+           @keyframes skycircle {
+            0% {
+                left: 250px;
+ 
+            }
+ 
+            100% {
+                left: 270px;
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+           .box-dgn {
+               width: 80%;
+           }
+
+           .box-dgn h1 {
+               font-size: 24px;
+           }
+
+           .name {
+               font-size: 1.5rem;
+               margin-left: 50px;
+           }
+
+           nav a {
+               margin-top: 5px;
+           }
+
+           .spr-op{
+            font-size: .8rem;
+           }
+
+           .excess {
+            width: 340px;
+           }
+       }
