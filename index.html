@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DTB</title>
+    <title>SP Representation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
@@ -17,60 +17,102 @@
     <div class="yellow-circle"></div>
     <div class="sky-circle"></div>
     <nav>
-        <a href="index.html">DTB</a>
-        <a href="mantissa.html">MANTISSA</a>
-        <a href="excess.html">EXCESS</a>
-        <a href="spr.html">SPR</a>
-        <div>
-            
-        </div>
         <a class="name" href="https://www.linkedin.com/in/ritik-singh-930327244/?originalSubdomain=in">RITIK SINGH</a>
     </nav>
 
     <div class="dcb box-dgn">
-        <h1>DECIMAL TO BINARY</h1>
+        <h1>SINGLE PRECISION</h1>
         <input type="text" id="decimalInput" class="inpt" placeholder="Enter decimal number" />
         <button onclick="convertToBinary()">CONVERT</button>
-        <h3 id="binaryOutput"></h3>
+        <button onclick="resetFields()">RESET</button>
+        <h5 id="binaryOutput"></h5>
     </div>
 
-
     <script>
-        function decimalToBinary(decimal) {
-            // Separate integer and fractional parts
-            let integerPart = Math.floor(decimal);
-            let fractionalPart = decimal - integerPart;
+        function decimalToSinglePrecision(decimalNumber) {
+            // Step 1: Determine the sign bit
+            const sign = decimalNumber < 0 ? 1 : 0;
+
+            // Step 2: Work with the absolute value
+            let absNumber = Math.abs(decimalNumber);
+
+            // Step 3: Convert to binary
+            const integerPart = Math.floor(absNumber);
+            let fractionalPart = absNumber - integerPart;
 
             // Convert integer part to binary
-            let integerBinary = "";
-            while (integerPart > 0) {
-                integerBinary = (integerPart % 2) + integerBinary;
-                integerPart = Math.floor(integerPart / 2);
-            }
-            if (integerBinary === "") integerBinary = "0"; // Handle case for 0
+            const integerBinary = integerPart.toString(2);
 
             // Convert fractional part to binary
-            let fractionalBinary = "";
-            let precision = 10; // Limit to 10 binary places
-            while (fractionalPart > 0 && fractionalBinary.length < precision) {
+            let fractionalBinary = '';
+            while (fractionalPart > 0 && fractionalBinary.length < 23) {
                 fractionalPart *= 2;
-                let bit = Math.floor(fractionalPart);
-                fractionalBinary += bit;
-                fractionalPart -= bit;
+                if (fractionalPart >= 1) {
+                    fractionalBinary += '1';
+                    fractionalPart -= 1;
+                } else {
+                    fractionalBinary += '0';
+                }
             }
 
-            // Combine both parts
-            return fractionalBinary.length > 0
-                ? integerBinary + "." + fractionalBinary
-                : integerBinary;
+            const binary = `${integerBinary}.${fractionalBinary}`;
+
+            // Step 4: Normalize the binary
+            let normalizedBinary, unbiasedExponent;
+            if (integerPart !== 0) {
+                const firstOneIndex = integerBinary.indexOf('1');
+                normalizedBinary = binary.slice(firstOneIndex).replace('.', '');
+                unbiasedExponent = integerBinary.length - 1;
+            } else {
+                const firstOneIndex = fractionalBinary.indexOf('1');
+                normalizedBinary = fractionalBinary.slice(firstOneIndex + 1);
+                unbiasedExponent = -(firstOneIndex + 1);
+            }
+
+            // Mantissa: significant binary digits only
+            const mantissa = normalizedBinary.slice(1);
+            const biasedExponent = unbiasedExponent + 127;
+            const biasedExponentBits = biasedExponent.toString(2).padStart(8, '0');
+            const paddedMantissa = mantissa.padEnd(23, '0'); // Ensure mantissa is 23 bits
+            const singlePrecisionBinary = `${sign}${biasedExponentBits}${paddedMantissa}`;
+            const singlePrecisionHex = parseInt(singlePrecisionBinary, 2).toString(16).toUpperCase().padStart(8, '0');
+
+            return {
+                decimal: decimalNumber,
+                sign,
+                unbiasedExponent,
+                biasedExponent,
+                biasedExponentBinary: biasedExponentBits,
+                mantissa,
+                paddedMantissa,
+                singlePrecisionBinary,
+                singlePrecisionHex
+            };
         }
 
         function convertToBinary() {
             const input = document.getElementById('decimalInput').value;
             const decimalNumber = parseFloat(input);
-            const binaryResult = decimalToBinary(decimalNumber);
-            document.getElementById('binaryOutput').innerText += `Binary: ${binaryResult} `;
+            const result = decimalToSinglePrecision(decimalNumber);
+            
+            document.getElementById('binaryOutput').innerText = `
+                Decimal Number: ${result.decimal}
+                Sign Bit: ${result.sign}
+                Unbiased Exponent: ${result.unbiasedExponent}
+                Biased Exponent: ${result.biasedExponent}
+                Biased Exponent (Binary): ${result.biasedExponentBinary}
+                Mantissa (Significant): ${result.mantissa}
+                Mantissa (Padded for SP): ${result.paddedMantissa}
+                Single Precision (Binary): ${result.singlePrecisionBinary}
+                Single Precision (Hexadecimal): 
+                ${result.singlePrecisionHex}
+            `;
             document.getElementById('decimalInput').value = ''; // Clear input after conversion
+        }
+
+        function resetFields() {
+            document.getElementById('decimalInput').value = ''; // Clear input field
+            document.getElementById('binaryOutput').innerText = ''; // Clear output display
         }
     </script>
 </body>

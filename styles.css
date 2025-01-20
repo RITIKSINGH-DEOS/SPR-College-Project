@@ -131,7 +131,7 @@
            flex-direction: column;
        }
 
- 
+
 
        #sprOutput {
            display: block;
@@ -170,7 +170,7 @@
            border: none;
            border-radius: 50%;
            position: absolute;
-           top: 450px;
+           top: 400px;
            left: 1000px;
            box-shadow: 0 0 15px 10px rgba(178, 78, 236, 0.954);
            animation: purplecircle 4s 1s infinite alternate;
@@ -198,19 +198,19 @@
            border-radius: 50%;
            position: absolute;
            top: 90px;
-           left: 1280px;
+           left: 1080px;
            box-shadow: 0 0 15px 10px rgba(235, 204, 101, 0.954);
            animation: yellowcircle 4s 1s infinite alternate;
        }
 
        @keyframes yellowcircle {
            0% {
-               left: 1280px;
+               left: 1080px;
 
            }
 
            100% {
-               left: 1300px;
+               left: 1100px;
                width: 110px;
                height: 110px;
            }
@@ -260,12 +260,13 @@
        @media (max-width:475px) {
 
            .name {
-               margin-left: 0;
+               margin-right: 100px;
            }
 
            nav {
-               flex-direction: column;
+               display: flex;
                justify-content: center;
+               /* border: 2px solid white; */
            }
 
            .yellow-circle {
@@ -280,7 +281,7 @@
 
                width: 70px;
                height: 70px;
-               top: 180px;
+               top: 100px;
                left: 40px;
            }
 
@@ -299,22 +300,22 @@
            }
 
            .sky-circle {
-               top: 650px;
+               top: 675px;
                left: 250px;
            }
 
            @keyframes skycircle {
-            0% {
-                left: 250px;
- 
-            }
- 
-            100% {
-                left: 270px;
-                width: 110px;
-                height: 110px;
-            }
-        }
+               0% {
+                   left: 250px;
+
+               }
+
+               100% {
+                   left: 270px;
+                   width: 110px;
+                   height: 110px;
+               }
+           }
 
            .box-dgn {
                width: 80%;
@@ -333,11 +334,11 @@
                margin-top: 5px;
            }
 
-           .spr-op{
-            font-size: .8rem;
+           .spr-op {
+               font-size: .8rem;
            }
 
            .excess {
-            width: 340px;
+               width: 340px;
            }
        }
