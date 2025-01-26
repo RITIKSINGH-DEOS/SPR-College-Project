@@ -79,6 +79,7 @@
 
             return {
                 decimal: decimalNumber,
+                binaryRepresentation: binary,
                 sign,
                 unbiasedExponent,
                 biasedExponent,
@@ -93,19 +94,25 @@
         function convertToBinary() {
             const input = document.getElementById('decimalInput').value;
             const decimalNumber = parseFloat(input);
+
+            if (isNaN(decimalNumber)) {
+                document.getElementById('binaryOutput').innerText = "Please enter a valid decimal number.";
+                return;
+            }
+
             const result = decimalToSinglePrecision(decimalNumber);
             
             document.getElementById('binaryOutput').innerText = `
                 Decimal Number: ${result.decimal}
+                Binary Representation: ${result.binaryRepresentation}
                 Sign Bit: ${result.sign}
+                Mantissa (Significant): ${result.mantissa}
                 Unbiased Exponent: ${result.unbiasedExponent}
                 Biased Exponent: ${result.biasedExponent}
                 Biased Exponent (Binary): ${result.biasedExponentBinary}
-                Mantissa (Significant): ${result.mantissa}
                 Mantissa (Padded for SP): ${result.paddedMantissa}
                 Single Precision (Binary): ${result.singlePrecisionBinary}
-                Single Precision (Hexadecimal): 
-                ${result.singlePrecisionHex}
+                Single Precision (Hexadecimal): ${result.singlePrecisionHex}
             `;
             document.getElementById('decimalInput').value = ''; // Clear input after conversion
         }
