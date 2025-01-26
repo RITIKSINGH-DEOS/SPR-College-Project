@@ -1,344 +1,344 @@
-       * {
-           font-family: "Montserrat", serif;
-       }
-
-       body {
-           background-color: #000000;
-           /* Dark background */
-           color: #e5e5e5;
-           /* Light text color */
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           justify-content: center;
-           height: 100vh;
-           margin: 0;
-
-       }
-
-       :root {
-           --g-bg: #000000;
-       }
-
-       nav {
-           /* border: 2px solid white; */
-           background-color: #000000;
-           padding: 15px;
-           width: 100%;
-           position: fixed;
-           top: 0;
-           left: 0;
-           z-index: 1000;
-           display: flex;
-           align-items: center;
-           flex-wrap: wrap;
-           justify-content: space-between;
-       }
-
-       nav a {
-           font-weight: 500;
-           color: white;
-           cursor: pointer;
-           text-decoration: none;
-           margin-right: 15px;
-           position: relative;
-           transition: color 0.2s;
-       }
-
-       nav a::after {
-           content: '';
-           position: absolute;
-           left: 0;
-           bottom: -2px;
-           width: 0;
-           height: 2px;
-           background-color: red;
-           transition: width 0.3s ease;
-       }
-
-       nav a:hover {
-           color: rgb(247, 228, 228);
-       }
-
-       nav a:hover::after {
-           width: 100%;
-       }
-
-       h1 {
-           transition: 0.2s;
-       }
-
-       h1:hover {
-           color: red;
-       }
-
-       .name {
-           margin-left: auto;
-           font-weight: bold;
-           font-size: 1.7rem;
-           margin-right: 50px;
-       }
-
-       input,
-       button {
-           padding: 10px;
-           margin: 5px;
-           border: none;
-           transition: 0.3s;
-           border-radius: 5px;
-       }
-
-       input {
-           width: 200px;
-       }
-
-       button {
-           background-color: red;
-           color: white;
-           cursor: pointer;
-           width: 50%;
-           font-weight: bold;
-       }
-
-       button:hover {
-           background-color: red;
-       }
-
-       .inpt {
-           width: 90%;
-       }
-
-       .box-dgn {
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           border: 0.1px solid rgb(117, 116, 116);
-           border-radius: 10px;
-           cursor: pointer;
-           background-color: var(--g-bg);
-           box-shadow: rgba(58, 55, 55, 0.35) 0px 5px 15px;
-           transition: 0.2s;
-           padding: 10px;
-           width: 400px;
-       }
-
-       .box-dgn:hover {
-           box-shadow: rgba(203, 194, 194, 0.35) 0px 5px 15px;
-       }
-
-       .spr-op {
-           display: flex;
-           flex-direction: column;
-       }
-
-
-
-       #sprOutput {
-           display: block;
-           margin-top: 10px;
-       }
-
-       .red-circle {
-           background-color: rgba(204, 68, 68, 0.954);
-           width: 150px;
-           height: 150px;
-           border-radius: 50%;
-           position: absolute;
-           left: 300px;
-           top: 80px;
-           box-shadow: 0 0 15px 10px rgba(204, 68, 68, 0.954);
-           animation: redcircle 4s 1s infinite alternate;
-       }
-
-       @keyframes redcircle {
-           0% {
-               left: 300px;
-           }
-
-           100% {
-               left: 330px;
-               width: 160px;
-               height: 160px;
-
-           }
-       }
-
-       .purple-circle {
-           background-color: rgba(178, 78, 236, 0.954);
-           width: 200px;
-           height: 200px;
-           border: none;
-           border-radius: 50%;
-           position: absolute;
-           top: 400px;
-           left: 1000px;
-           box-shadow: 0 0 15px 10px rgba(178, 78, 236, 0.954);
-           animation: purplecircle 4s 1s infinite alternate;
-       }
-
-       @keyframes purplecircle {
-           0% {
-               left: 1030px;
-
-           }
-
-           100% {
-               left: 1030px;
-               width: 210px;
-               height: 210px;
-           }
-       }
-
-
-       .yellow-circle {
-           background-color: rgba(236, 199, 78, 0.954);
-           width: 100px;
-           height: 100px;
-           border: none;
-           border-radius: 50%;
-           position: absolute;
-           top: 90px;
-           left: 1080px;
-           box-shadow: 0 0 15px 10px rgba(235, 204, 101, 0.954);
-           animation: yellowcircle 4s 1s infinite alternate;
-       }
-
-       @keyframes yellowcircle {
-           0% {
-               left: 1080px;
-
-           }
-
-           100% {
-               left: 1100px;
-               width: 110px;
-               height: 110px;
-           }
-       }
-
-
-       .sky-circle {
-           background-color: rgba(78, 217, 236, 0.954);
-           width: 100px;
-           height: 100px;
-           border: none;
-           border-radius: 50%;
-           position: absolute;
-           top: 500px;
-           left: 180px;
-           box-shadow: 0 0 15px 10px rgba(99, 218, 234, 0.954);
-           animation: skycircle 4s 1s infinite alternate;
-       }
-
-       @keyframes skycircle {
-           0% {
-               left: 180px;
-
-           }
-
-           100% {
-               left: 200px;
-               width: 110px;
-               height: 110px;
-           }
-       }
-
-       @keyframes gradient {
-           0% {
-               background-position: 0% 50%;
-           }
-
-           50% {
-               background-position: 100% 50%;
-           }
-
-           100% {
-               background-position: 0% 50%;
-           }
-       }
-
-       @media (max-width:475px) {
-
-           .name {
-               margin-right: 100px;
-           }
-
-           nav {
-               display: flex;
-               justify-content: center;
-               /* border: 2px solid white; */
-           }
-
-           .yellow-circle {
-               display: none;
-           }
-
-           .purple-circle {
-               display: none;
-           }
-
-           .red-circle {
-
-               width: 70px;
-               height: 70px;
-               top: 100px;
-               left: 40px;
-           }
-
-           @keyframes redcircle {
-               0% {
-                   left: 40px;
-               }
-
-               100% {
-                   left: 60px;
-                   width: 80px;
-                   height: 80px;
-
-               }
-
-           }
-
-           .sky-circle {
-               top: 675px;
-               left: 250px;
-           }
-
-           @keyframes skycircle {
-               0% {
-                   left: 250px;
-
-               }
-
-               100% {
-                   left: 270px;
-                   width: 110px;
-                   height: 110px;
-               }
-           }
-
-           .box-dgn {
-               width: 80%;
-           }
-
-           .box-dgn h1 {
-               font-size: 24px;
-           }
-
-           .name {
-               font-size: 1.5rem;
-               margin-left: 50px;
-           }
-
-           nav a {
-               margin-top: 5px;
-           }
-
-           .spr-op {
-               font-size: .8rem;
-           }
-
-           .excess {
-               width: 340px;
-           }
-       }
+* {
+    font-family: "Montserrat", serif;
+}
+
+body {
+    background-color: #000000;
+    /* Dark background */
+    color: #e5e5e5;
+    /* Light text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+
+}
+
+:root {
+    --g-bg: #000000;
+}
+
+nav {
+    /* border: 2px solid white; */
+    background-color: #000000;
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+nav a {
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 15px;
+    position: relative;
+    transition: color 0.2s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: rgb(247, 228, 228);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+h1 {
+    transition: 0.2s;
+}
+
+h1:hover {
+    color: red;
+}
+
+.name {
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 1.7rem;
+    margin-right: 50px;
+}
+
+input,
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+input {
+    width: 200px;
+}
+
+button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    width: 50%;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: red;
+}
+
+.inpt {
+    width: 90%;
+}
+
+.box-dgn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.1px solid rgb(117, 116, 116);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--g-bg);
+    box-shadow: rgba(58, 55, 55, 0.35) 0px 5px 15px;
+    transition: 0.2s;
+    padding: 10px;
+    width: 400px;
+}
+
+.box-dgn:hover {
+    box-shadow: rgba(203, 194, 194, 0.35) 0px 5px 15px;
+}
+
+.spr-op {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#sprOutput {
+    display: block;
+    margin-top: 10px;
+}
+
+.red-circle {
+    background-color: rgba(204, 68, 68, 0.954);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    left: 300px;
+    top: 80px;
+    box-shadow: 0 0 15px 10px rgba(204, 68, 68, 0.954);
+    animation: redcircle 4s 1s infinite alternate;
+}
+
+@keyframes redcircle {
+    0% {
+        left: 300px;
+    }
+
+    100% {
+        left: 330px;
+        width: 160px;
+        height: 160px;
+
+    }
+}
+
+.purple-circle {
+    background-color: rgba(178, 78, 236, 0.954);
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 400px;
+    left: 1000px;
+    box-shadow: 0 0 15px 10px rgba(178, 78, 236, 0.954);
+    animation: purplecircle 4s 1s infinite alternate;
+}
+
+@keyframes purplecircle {
+    0% {
+        left: 1030px;
+
+    }
+
+    100% {
+        left: 1030px;
+        width: 210px;
+        height: 210px;
+    }
+}
+
+
+.yellow-circle {
+    background-color: rgba(236, 199, 78, 0.954);
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 90px;
+    left: 1080px;
+    box-shadow: 0 0 15px 10px rgba(235, 204, 101, 0.954);
+    animation: yellowcircle 4s 1s infinite alternate;
+}
+
+@keyframes yellowcircle {
+    0% {
+        left: 1080px;
+
+    }
+
+    100% {
+        left: 1100px;
+        width: 110px;
+        height: 110px;
+    }
+}
+
+
+.sky-circle {
+    background-color: rgba(78, 217, 236, 0.954);
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 500px;
+    left: 180px;
+    box-shadow: 0 0 15px 10px rgba(99, 218, 234, 0.954);
+    animation: skycircle 4s 1s infinite alternate;
+}
+
+@keyframes skycircle {
+    0% {
+        left: 180px;
+
+    }
+
+    100% {
+        left: 200px;
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width:475px) {
+
+    .name {
+        margin-right: 100px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        /* border: 2px solid white; */
+    }
+
+    .yellow-circle {
+        display: none;
+    }
+
+    .purple-circle {
+        display: none;
+    }
+
+    .red-circle {
+
+        width: 70px;
+        height: 70px;
+        top: 100px;
+        left: 40px;
+    }
+
+    @keyframes redcircle {
+        0% {
+            left: 40px;
+        }
+
+        100% {
+            left: 60px;
+            width: 80px;
+            height: 80px;
+
+        }
+
+    }
+
+    .sky-circle {
+        top: 675px;
+        left: 250px;
+    }
+
+    @keyframes skycircle {
+        0% {
+            left: 250px;
+
+        }
+
+        100% {
+            left: 270px;
+            width: 110px;
+            height: 110px;
+        }
+    }
+
+    .box-dgn {
+        width: 80%;
+    }
+
+    .box-dgn h1 {
+        font-size: 24px;
+    }
+
+    .name {
+        font-size: 1.5rem;
+        margin-left: 50px;
+    }
+
+    nav a {
+        margin-top: 5px;
+    }
+
+    .spr-op {
+        font-size: .8rem;
+    }
+
+    .excess {
+        width: 340px;
+    }
+}

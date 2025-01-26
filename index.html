@@ -25,25 +25,17 @@
         <input type="text" id="decimalInput" class="inpt" placeholder="Enter decimal number" />
         <button onclick="convertToBinary()">CONVERT</button>
         <button onclick="resetFields()">RESET</button>
-        <h5 id="binaryOutput"></h5>
+        <div id="binaryOutput"></div>
     </div>
 
     <script>
         function decimalToSinglePrecision(decimalNumber) {
-            // Step 1: Determine the sign bit
             const sign = decimalNumber < 0 ? 1 : 0;
-
-            // Step 2: Work with the absolute value
             let absNumber = Math.abs(decimalNumber);
-
-            // Step 3: Convert to binary
             const integerPart = Math.floor(absNumber);
             let fractionalPart = absNumber - integerPart;
 
-            // Convert integer part to binary
             const integerBinary = integerPart.toString(2);
-
-            // Convert fractional part to binary
             let fractionalBinary = '';
             while (fractionalPart > 0 && fractionalBinary.length < 23) {
                 fractionalPart *= 2;
@@ -57,7 +49,6 @@
 
             const binary = `${integerBinary}.${fractionalBinary}`;
 
-            // Step 4: Normalize the binary
             let normalizedBinary, unbiasedExponent;
             if (integerPart !== 0) {
                 const firstOneIndex = integerBinary.indexOf('1');
@@ -69,11 +60,10 @@
                 unbiasedExponent = -(firstOneIndex + 1);
             }
 
-            // Mantissa: significant binary digits only
             const mantissa = normalizedBinary.slice(1);
             const biasedExponent = unbiasedExponent + 127;
             const biasedExponentBits = biasedExponent.toString(2).padStart(8, '0');
-            const paddedMantissa = mantissa.padEnd(23, '0'); // Ensure mantissa is 23 bits
+            const paddedMantissa = mantissa.padEnd(23, '0');
             const singlePrecisionBinary = `${sign}${biasedExponentBits}${paddedMantissa}`;
             const singlePrecisionHex = parseInt(singlePrecisionBinary, 2).toString(16).toUpperCase().padStart(8, '0');
 
@@ -96,30 +86,46 @@
             const decimalNumber = parseFloat(input);
 
             if (isNaN(decimalNumber)) {
-                document.getElementById('binaryOutput').innerText = "Please enter a valid decimal number.";
+                document.getElementById('binaryOutput').innerHTML = "<p>Please enter a valid decimal number.</p>";
                 return;
             }
 
             const result = decimalToSinglePrecision(decimalNumber);
-            
-            document.getElementById('binaryOutput').innerText = `
-                Decimal Number: ${result.decimal}
-                Binary Representation: ${result.binaryRepresentation}
-                Sign Bit: ${result.sign}
-                Mantissa (Significant): ${result.mantissa}
-                Unbiased Exponent: ${result.unbiasedExponent}
-                Biased Exponent: ${result.biasedExponent}
-                Biased Exponent (Binary): ${result.biasedExponentBinary}
-                Mantissa (Padded for SP): ${result.paddedMantissa}
-                Single Precision (Binary): ${result.singlePrecisionBinary}
-                Single Precision (Hexadecimal): ${result.singlePrecisionHex}
-            `;
-            document.getElementById('decimalInput').value = ''; // Clear input after conversion
+            document.getElementById('binaryOutput').innerHTML = '';
+
+            // Create buttons and result containers
+            const resultCategories = [
+                { label: 'Binary', value: result.binaryRepresentation },
+                { label: 'Sign Bit', value: result.sign },
+                { label: 'Exponent', value: result.unbiasedExponent },
+                { label: 'Biased Exponent', value: result.biasedExponent },
+                { label: 'Binary (Biased Exponent)', value: result.biasedExponentBinary },
+                { label: 'Mantissa (Significant)', value: result.mantissa },
+                { label: 'Mantissa ( SP)', value: result.paddedMantissa },
+                { label: 'Single Precision (Binary)', value: result.singlePrecisionBinary },
+                { label: '(Hexadecimal)', value: result.singlePrecisionHex }
+            ];
+
+            resultCategories.forEach(category => {
+                const button = document.createElement('button');
+                button.innerText = category.label;
+                button.onclick = () => showResult(category.label, category.value);
+                document.getElementById('binaryOutput').appendChild(button);
+
+                const resultContainer = document.createElement('div');
+                resultContainer.id = category.label.replace(/\s+/g, '') + 'Result';
+                document.getElementById('binaryOutput').appendChild(resultContainer);
+            });
+        }
+
+        function showResult(label, value) {
+            const resultContainer = document.getElementById(label.replace(/\s+/g, '') + 'Result');
+            resultContainer.innerHTML = `<p><strong>${label}:</strong> ${value}</p>`;
         }
 
         function resetFields() {
-            document.getElementById('decimalInput').value = ''; // Clear input field
-            document.getElementById('binaryOutput').innerText = ''; // Clear output display
+            document.getElementById('decimalInput').value = '';
+            document.getElementById('binaryOutput').innerHTML = '';
         }
     </script>
 </body>
